@@ -648,6 +648,15 @@ define Device/iptime_a8004t
 endef
 TARGET_DEVICES += iptime_a8004t
 
+define Device/iptime_t24000m
+  $(Device/dsa-migration)
+  IMAGE_SIZE := 129280k
+  UIMAGE_NAME := t24000m
+  DEVICE_VENDOR := ipTIME
+  DEVICE_MODEL := T24000M
+endef
+TARGET_DEVICES += iptime_t24000m
+
 define Device/jcg_jhr-ac876m
   $(Device/dsa-migration)
   IMAGE_SIZE := 16064k
