@@ -166,4 +166,33 @@ ifeq ($(SUBTARGET),bcm2711)
   TARGET_DEVICES += rpi-4
 endif
 
+define Device/mcc-proto-01
+  DEVICE_MODEL := Mareel Cloud Connector Prototype 01
+  DEVICE_VARIANT := (64bit)
+  KERNEL_IMG := kernel8.img
+  IMAGE_SIZE := 131072k
+  UIMAGE_NAME := mcc-proto-01
+  DEVICE_VENDOR := Mareel.io
+  DEVICE_MODEL := MCC-PROTO-01
+  DEVICE_DTS := \
+	broadcom/bcm2711-rpi-400 \
+	broadcom/bcm2711-rpi-4-b \
+	broadcom/bcm2711-rpi-cm4
+  SUPPORTED_DEVICES := \
+	raspberrypi,400 \
+	raspberrypi,4-compute-module \
+	raspberrypi,4-model-b
+  DEVICE_PACKAGES := \
+	cypress-firmware-43455-sdio \
+	cypress-nvram-43455-sdio-rpi-4b \
+	kmod-brcmfmac wpad-basic-wolfssl
+  KERNEL_LOADADDR := 0x00080000
+  KERNEL := kernel-bin | append-dtb | uImage lzma
+  #IMAGE/sysupgrade.img.gz := boot-common | boot-2711 | sdcard-img | gzip | append-metadata
+  #IMAGE/factory.img.gz := boot-common | boot-2711 | sdcard-img | gzip
+endef
+ifeq ($(SUBTARGET),bcm2711)
+  TARGET_DEVICES += mcc-proto-01
+endif
+
 $(eval $(call BuildImage))
