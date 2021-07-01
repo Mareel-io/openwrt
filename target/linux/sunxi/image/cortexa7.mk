@@ -227,3 +227,10 @@ define Device/xunlong_orangepi-2
   SOC := sun8i-h3
 endef
 TARGET_DEVICES += xunlong_orangepi-2
+
+define Device/mareel_mkp-02
+  DEVICE_VENDOR := Mareel.io
+  DEVICE_MODEL := Mareel Key prototype-02
+  SOC := sun8i-h3
+endef
+TARGET_DEVICES += mareel_mkp-02
