@@ -232,6 +232,7 @@ define Device/mareel_mkp-02
   DEVICE_VENDOR := Mareel.io
   DEVICE_MODEL := Mareel Key prototype-02
   DEVICE_DTS := sun8i-h3-nanopi-neo
+  DEVICE_HASH_ALGO := sha256
   SOC := sun8i-h3
   KERNEL := kernel-bin | lzma
   KERNEL_INITRAMFS_SUFFIX := -recovery.itb
