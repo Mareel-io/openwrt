@@ -231,6 +231,12 @@ TARGET_DEVICES += xunlong_orangepi-2
 define Device/mareel_mkp-02
   DEVICE_VENDOR := Mareel.io
   DEVICE_MODEL := Mareel Key prototype-02
+  DEVICE_DTS := sun8i-h3-nanopi-neo
   SOC := sun8i-h3
+  KERNEL := kernel-bin | lzma
+  KERNEL_INITRAMFS_SUFFIX := -recovery.itb
+  KERNEL_INITRAMFS := append-kernel | lzma | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
+  IMAGES := sysupgrade.itb
+  IMAGE/sysupgrade.fit := append-kernel | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static-with-rootfs | pad-rootfs | append-metadata
 endef
 TARGET_DEVICES += mareel_mkp-02
