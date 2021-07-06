@@ -224,6 +224,7 @@ define Build/fit
 	$(TOPDIR)/scripts/mkits.sh \
 		-D $(DEVICE_NAME) -o $@.its -k $@ \
 		-C $(word 1,$(1)) $(if $(word 2,$(1)),\
+		$(if $(DEVICE_HASH_ALGO),-H $(DEVICE_HASH_ALGO)) \
 		$(if $(DEVICE_DTS_OVERLAY),-d $(KERNEL_BUILD_DIR)/image-$$(basename $(word 2,$(1))),\
 			-d $(word 2,$(1)))) \
 		$(if $(findstring with-rootfs,$(word 3,$(1))),-r $(IMAGE_ROOTFS)) \
