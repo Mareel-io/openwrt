@@ -228,16 +228,21 @@ define Device/xunlong_orangepi-2
 endef
 TARGET_DEVICES += xunlong_orangepi-2
 
-define Device/mareel_mkp-02
+define Device/mareel_scintillans
   DEVICE_VENDOR := Mareel.io
-  DEVICE_MODEL := Mareel Key prototype-02
+  DEVICE_MODEL := Mareel Key rev. 1 (scintillans)
   DEVICE_DTS := sun8i-h3-nanopi-neo
   DEVICE_HASH_ALGO := sha256
+  DEVICE_PACKAGES:=mareel-connector
+  SUNXI_DTS := sun8i-h3-nanopi-neo
   SOC := sun8i-h3
   KERNEL := kernel-bin | lzma
   KERNEL_INITRAMFS_SUFFIX := -recovery.itb
   KERNEL_INITRAMFS := append-kernel | lzma | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
-  IMAGES := sysupgrade.itb
-  IMAGE/sysupgrade.fit := append-kernel | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static-with-rootfs | pad-rootfs | append-metadata
+  IMAGES := sysupgrade.itb kernel.itb rootfs.img
+  #IMAGE/sysupgrade.itb := append-kernel | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static-with-rootfs | pad-rootfs | append-metadata
+  IMAGE/sysupgrade.itb := append-kernel | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static-with-rootfs | pad-rootfs | append-metadata
+  IMAGE/kernel.itb := append-kernel | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static | append-metadata
+  IMAGE/rootfs.img := append-rootfs
 endef
-TARGET_DEVICES += mareel_mkp-02
+TARGET_DEVICES += mareel_scintillans
