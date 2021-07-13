@@ -239,9 +239,7 @@ define Device/mareel_scintillans
   KERNEL := kernel-bin | lzma
   KERNEL_INITRAMFS_SUFFIX := -recovery.itb
   KERNEL_INITRAMFS := append-kernel | lzma | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
-  IMAGES := sysupgrade.itb kernel.itb rootfs.img
-  #IMAGE/sysupgrade.itb := append-kernel | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static-with-rootfs | pad-rootfs | append-metadata
-  IMAGE/sysupgrade.itb := append-kernel | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static-with-rootfs | pad-rootfs | append-metadata
+  IMAGES := kernel.itb rootfs.img
   IMAGE/kernel.itb := append-kernel | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static | append-metadata
   IMAGE/rootfs.img := append-rootfs
 endef
