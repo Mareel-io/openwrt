@@ -168,6 +168,12 @@ define U-Boot/zeropi
   BUILD_DEVICES:=friendlyarm_zeropi
 endef
 
+define U-Boot/mareel_scintillans
+  BUILD_SUBTARGET:=cortexa7
+  NAME:=U-Boot for NanoPi NEO (H3)
+  BUILD_DEVICES:=friendlyarm_nanopi-neo
+endef
+
 define U-Boot/nanopi_neo_air
   BUILD_SUBTARGET:=cortexa7
   NAME:=U-Boot for NanoPi NEO Air (H3)
